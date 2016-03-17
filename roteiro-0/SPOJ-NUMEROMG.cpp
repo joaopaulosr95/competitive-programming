@@ -18,8 +18,9 @@ unsigned int base36decode (string input)
     {
         input[i] = toupper(input[i]);
         baseIndex = __ALPHABET.find(input[i]);
-        base10 += baseIndex * pow(36,input.length()- i);
+        base10 += baseIndex * pow(36, input.length()-i-1);
     }
+    //cout << base10 << endl;
     return base10;
 }
 
@@ -31,7 +32,7 @@ string base36encode (unsigned int base10)
     {
         base36 = __ALPHABET[base10 % 36] + base36;
     } while(base10 /= 36);
-    base36.pop_back();
+    //cout << base36 << endl;
     return base36;
 }
 
