@@ -8,7 +8,7 @@ int main ()
     int n = 0, x, i;
 
     cin >> x;
-    if (x % 2 == 0)
+    if (x == 1 || x % 2 == 0)
         cout << "nao" << endl;
     else
     {
