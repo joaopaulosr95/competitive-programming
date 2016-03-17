@@ -1,53 +1,46 @@
 #include <iostream>
+#include <algorithm>
 #include <string>
-#include <stack>
+#include <cstring>
 #include <cmath>
 
 using namespace std;
+const string __ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-const string BASE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-int decode (string b36)
+unsigned int base36decode (string input)
 {
-    string input = b36.toupper().reverse();
-    long b10 = 0;
-    
+    int i;
+    unsigned int base10 = 0;
+    size_t baseIndex;
 
-    return b10;
-}
-
-string encode (long b10)
-{
-    stack<char> b64();
-    string result;
-
-    while (b10 != 0)
+    for (i = 0; i < input.length(); i++)
     {
-        b64.Push(BASE[b10 % 36];
-        b10 =/ 36;
-    }   
-    result = b64.ToArray();
-    return result;
+        input[i] = toupper(input[i]);
+        baseIndex = __ALPHABET.find(input[i]);
+        base10 += baseIndex * pow(36,input.length()- i);
+    }
+    return base10;
 }
 
-void sum (string a36, b36)
+string base36encode (unsigned int base10)
 {
+    string base36;
     
+    do
+    {
+        base36 = __ALPHABET[base10 % 36] + base36;
+    } while(base10 /= 36);
+    base36.pop_back();
+    return base36;
 }
 
 int main ()
 {
-    string a36, b36, sum36;
-    long a10, b10, sum36;
+    string a, b;
 
-    while (cin << a36 << b36 && ( a36 != "0" && b36 != "0" ))
-    {
-        /*
-         *  Transforma base36 para base10
-         *  Soma
-         *  Converte base10 para base36
-         */
-        sum(a36,b36);
-    }
+    while (cin >> a >> b && ( a != "0" && b != "0" ))
+        cout << base36encode(base36decode(a) + base36decode(b)) << endl;
     return 0;
 }
+
