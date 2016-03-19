@@ -5,25 +5,28 @@ using namespace std;
 
 int main ()
 {
-    int n = 0, x, i;
+    int n = 0, x, isprime = 1, i = 2;
 
     cin >> x;
-    if (x == 1 || x % 2 == 0)
-        cout << "nao" << endl;
+    if (x < 0)
+        x = -x;
+    if (x < 2)
+        cout << "sim" << endl;
     else
     {
-        for (i = 3; i < sqrt(x); i++)
+        for (i = 2; i <= sqrt(x); i++)
         {
             if (x % i == 0)
-                n++;
-            if (n > 1)
             {
-                cout << "nao" << endl;
-                return -1;
+                isprime = 0;
+                break;
             }
         }
-        cout << "sim" << endl;
+    
+        if (isprime == 1)
+            cout << "sim" << endl;
+        else
+            cout << "nao" << endl;
     }
-     
     return 0;
 }
