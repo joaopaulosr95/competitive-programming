@@ -16,7 +16,7 @@ int main()
     int input1,input2;
 
 
-    while(cin >>attack >>defense && !attack==0 && !defense==0){ //loop atÈ ler 0 0
+    while(cin >>attack >>defense && !attack==0 && !defense==0){ //loop at√© ler 0 0
 
     vector<int> intVector;//vetor p atacantes
     vector<int> intVector2;//vetor para defensor
@@ -26,13 +26,13 @@ int main()
 
     while(i<attack){
         cin >> input1;
-        intVector.push_back(input1);//faz vetor de posiÁoes dos atacantes
+        intVector.push_back(input1);//faz vetor de posi√ßoes dos atacantes
         i++;
     }
 
    while(j<defense){
         cin >> input2;
-        intVector2.push_back(input2);//faz vetor de posiÁoes dos defensores
+        intVector2.push_back(input2);//faz vetor de posi√ßoes dos defensores
         j++;
     }
 
@@ -46,11 +46,11 @@ int main()
     intVector2.erase(intVector2.begin(),intVector2.end()); //desaloca?
 
     if(*it<*it2){
-        cout << "Y" << endl;//est· impedido
+        cout << "Y" << endl;//est√° impedido
 
     }
 
-    else {cout << "N" << endl;//nao est· impedido
+    else {cout << "N" << endl;//nao est√° impedido
 
     }
 
