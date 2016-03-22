@@ -18,3 +18,4 @@ int main ()
     cout << fat(n) << endl;
     return 0;
 }
+ 
