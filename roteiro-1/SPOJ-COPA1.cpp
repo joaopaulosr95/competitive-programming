@@ -160,4 +160,4 @@ int main ()	{
 			f=s2;
 	printf("\n%c", f);
 	return 0;
-	}
+	} 
