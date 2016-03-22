@@ -12,3 +12,4 @@ int main ()
     cout << "A=" << setprecision(4) << fixed << A << endl;
     return 0;
 }
+ 
