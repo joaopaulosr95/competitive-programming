@@ -13,3 +13,4 @@ int main()
     cout << fixed << setprecision (4) << dist << endl;
     return 0;
 }
+ 
