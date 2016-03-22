@@ -8,18 +8,17 @@ int main ()
 {
     string input;
     int words, i, j;
-    bool ordered = true;
+    bool ordered;
 
     cin >> words;
     while (words)
     {
+        ordered = true;
         cin >> input;
-        for (i = 0; i < input.size(); i++)
-            input[i] = tolower(input[i]);
 
         for (i = 0; i < input.size() - 1; ++i)
         {
-            if (input[i] >= input[i+1])
+            if (tolower(input[i]) >= tolower(input[i+1]))
             {
                 ordered = false;
                 break;
