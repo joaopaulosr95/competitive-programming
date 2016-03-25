@@ -1,5 +1,4 @@
 #include <iostream>
-#include <math.h> 
 //Por Tales Barreto
 using namespace std;
 
