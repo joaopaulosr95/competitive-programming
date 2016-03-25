@@ -1,8 +1,6 @@
 #include <iostream>
 #include <math.h> 
-
 //Por Tales Barreto
-
 using namespace std;
 
 int quadrado_distancia2pontos( int x1, int y1, int x2, int y2)
@@ -10,17 +8,15 @@ int quadrado_distancia2pontos( int x1, int y1, int x2, int y2)
 	return (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1); 
 }
 
-
 bool ehretangulo(int x1, int y1, int x2, int y2, int x3,int y3)
 {
 	int a,b,c;
-
-	if(	//Garantir que é um trangulo válido
+	
+	if(//Garantir que é um trangulo
 		x1==x2 && y1 == y2 ||
 		x2==x3 && y2 == y3 ||
 		x3==x1 && y3 == y1
 	)return false;
-	
 	a=quadrado_distancia2pontos(x1,y1,x2,y2);
 	b=quadrado_distancia2pontos(x2,y2,x3,y3);
 	c=quadrado_distancia2pontos(x3,y3,x1,y1);
@@ -88,6 +84,5 @@ int main()
 			cout << "ALMOST" << endl;
 		else
 			cout << "NEITHER" << endl;
-		
 	}
 }
