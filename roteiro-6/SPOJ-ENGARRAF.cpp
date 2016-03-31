@@ -28,6 +28,8 @@ int main ()
         for (i = 1; i <= M; i++)
         {
             cin >> from >> to >> w;
+            if (from == to)
+                w = 0;
             adj[from][to] = w;
         }
 		
@@ -60,9 +62,9 @@ int main ()
     	      }
     	    }
     		//---------------------------------------------//
-    		for (i = 1; i <= N; i++)
+    		/*for (i = 1; i <= N; i++)
                 cout << setw(6) << dist[i] << " ";
-            cout << endl;
+            cout << endl;*/
 
             if (dist[to] == INF)
     			cout << "-1" << endl;
