@@ -1,15 +1,24 @@
 #include <iostream>
 #include <algorithm>
+#include <utility>
 #include <vector>
 
 using namespace std;
 
 vector<int> __trees;
+
 struct Edge
 {
     int from;
     int to;
     int weight;
+
+    Edge (int from, int to, int weight)
+    {
+        this->from = from; 
+        this->to = to; 
+        this->weight = weight;
+    }
 };
 
 bool cmp (const struct Edge& E1, const struct Edge& E2)
@@ -27,36 +36,39 @@ bool cmpSol (const pair<int,int>& a, const pair<int,int>& b)
 
 int kFind (int u)
 {
-    int i;
-    
-    for (i = u; __trees[i] != i; i = __trees[i]);
-    __trees[u] = i;
+    int i = u;
+    while (i != __trees[i])
+        i = __trees[i];
     return i;
 }
 
-void kUnion (int u, int v)
+int kUnion (int u, int v)
 {
     __trees[kFind(u)] = kFind(v);
 }
 
 int main ()
 {
-    int testN, N, M, i;
-    struct Edge tmp;
+    int testN, N, M, i, from, to, w;
     vector<struct Edge> graph;
     vector< pair<int,int> > solution;
     
     testN = 1;
-    while ((cin >> N >> M) && (N != 0 && M != 0))
-    {
+    while ((cin >> N >> M) && N != 0)
+    { 
+        vector<struct Edge>().swap(graph);
+        vector<int>().swap(__trees);
+        vector< pair<int,int> >().swap(solution);
+        
         for (i = 0; i < M; i++)
         {
-            cin >> tmp.from >> tmp.to >> tmp.weight;
-            graph.push_back(tmp);
+            cin >> from >> to >> w;
+            struct Edge E (from,to,w);
+            graph.push_back(E);
         }
 
         //------------------- KRUSKAL -------------------//
-        cout << "Ordenando" << endl;
+        //cout << "Ordenando" << endl;
         sort(graph.begin(), graph.end(), cmp);
         for (i = 0; i < N; i++)
             __trees.push_back(i);
@@ -64,19 +76,21 @@ int main ()
         {
             if (kFind(graph[i].from) != kFind(graph[i].to))
             {
-                cout << "Aresta unindo " << graph[i].from << " e " << graph[i].to << endl;
+                //cout << "Aresta unindo " << graph[i].from << " e " << graph[i].to << endl;
                 kUnion(graph[i].from, graph[i].to);
-                solution.push_back(make_pair(graph[i].from, graph[i].to));
+                if (graph[i].from < graph[i].to)
+                    solution.push_back(make_pair(graph[i].from, graph[i].to));
+                else
+                    solution.push_back(make_pair(graph[i].to, graph[i].from));
             }
         }
         //-----------------------------------------------//
-        cout << "Teste << " << testN++ << endl;
         sort(solution.begin(), solution.end(), cmpSol);
+        //solution.erase( unique(solution.begin(), solution.end()), solution.end() );
+        cout << "Teste " << testN++ << endl;
         for (i = 0; i < solution.size(); i++)
             cout << solution[i].first << " " << solution[i].second << endl;
         cout << endl;
-        vector<int>().swap(__trees);
-        vector< pair<int,int> >().swap(solution);
 
     }
 
