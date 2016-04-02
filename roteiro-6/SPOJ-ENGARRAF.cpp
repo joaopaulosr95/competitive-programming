@@ -33,7 +33,7 @@ int main ()
             adj[from][to] = w;
         }
 		
-		/*for (i = 1; i <= N; i++)
+	/*for (i = 1; i <= N; i++)
         {
             for (w = 1; w <= N; w++)
                 cout << setw(5) << adj[i][w] << " ";
@@ -72,6 +72,5 @@ int main ()
     			cout << dist[to] << endl;
         }
     }
-
     return 0;
 }
