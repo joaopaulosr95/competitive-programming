@@ -5,7 +5,7 @@
 
 using namespace std;
 const int INF = INT_MAX;
-const int MAX = 26;
+const int MAX = 52;
 
 int Graph[MAX][MAX];
 int Residual[MAX][MAX];
@@ -18,9 +18,9 @@ int findMaxFlow (int source, int sink)
     bool visited[MAX];
     queue<int> toVisit;
     
-    for (from = 0; from <= MAX; from++)
+    for (from = 0; from < MAX; from++)
     { 
-        for (to = 0; to <= MAX; to++)
+        for (to = 0; to < MAX; to++)
             Residual[from][to] = Graph[from][to];
     }
     maxF = 0;
