@@ -6,8 +6,8 @@
 
 using namespace std;
 
-int matx[] = {-1, 0, 0, 1};
-int maty[] = {0, -1, 1, 0};
+int mx[] = {-1, 0, 0, 1};
+int my[] = {0, -1, 1, 0};
 int N, M,largura,comprimento;
 int matrizCaverna[11][11];
 
