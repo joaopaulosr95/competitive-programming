@@ -80,6 +80,3 @@ int main(){
     cout << search(aux1, aux2) << endl;
     return 0;
 }
-
-
-	
