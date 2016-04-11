@@ -9,7 +9,7 @@ const int MAX = 52;
 
 int Graph[MAX][MAX];
 int Residual[MAX][MAX];
-int prev[MAX];
+int parent[MAX];
 
 //------------------- Ford-Fulkerson ------------------//
 int findMaxFlow (int source, int sink)
@@ -31,7 +31,7 @@ int findMaxFlow (int source, int sink)
             visited[from] = false;
         toVisit.push(source);
         visited[source] = true;
-        prev[source] = -1; 
+        parent[source] = -1; 
         
         while (!toVisit.empty())
         {
@@ -42,7 +42,7 @@ int findMaxFlow (int source, int sink)
                 if (!visited[k] && Residual[toV][k])
                 {
                     toVisit.push(k);
-                    prev[k] = toV;
+                    parent[k] = toV;
                     visited[k] = true;
                 }
             }
@@ -53,14 +53,14 @@ int findMaxFlow (int source, int sink)
         else
         {
             flowCost = INT_MAX;
-            for (to = sink; to != source; to = prev[to])
+            for (to = sink; to != source; to = parent[to])
             {
-                from = prev[to];
+                from = parent[to];
                 flowCost = min (flowCost, Residual[from][to]);
             }
-            for (to = sink; to != source; to = prev[to])
+            for (to = sink; to != source; to = parent[to])
             {
-                from = prev[to];
+                from = parent[to];
                 Residual[from][to] -= flowCost;
                 Residual[to][from] += flowCost;
             }
@@ -84,10 +84,12 @@ int main ()
     for (i = 0; i < N; i++)
     {
         cin >> from >> to >> flow;
+        //To correct ASCII interval between 91 and 96
+        //we remove 6 from 'from' and 'to' variables
         if (from >= 97 && from <= 122)
-            from -= 32;
+            from -= 6;
         if (to >= 97 && to <= 122)
-            to -= 32;
+            to -= 6;
         Graph[from - 65][to - 65] = Graph[from - 65][to - 65] += flow;
     }
 
