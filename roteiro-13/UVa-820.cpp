@@ -87,5 +87,5 @@ int main ()
     }
     flow = findMaxFlow (0, N-1, N);
     cout << "Network " << ++testN << "\n";
-    cout << "The bandwidth is " << flow << endl;
+    cout << "The bandwidth is " << flow << "\n\n";
 }
