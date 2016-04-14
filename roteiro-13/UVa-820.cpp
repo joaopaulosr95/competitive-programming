@@ -5,7 +5,7 @@
 
 using namespace std;
 const int INF = INT_MAX;
-const int MAXV = 100;
+const int MAXV = 110;
 
 int Graph[MAXV][MAXV];
 int Residual[MAXV][MAXV];
@@ -31,7 +31,7 @@ int findMaxFlow (int source, int sink, int size)
             visited[from] = false;
         toVisit.push(source);
         visited[source] = true;
-        parent[source] = -1; 
+        parent[source] = -1;
         
         while (!toVisit.empty())
         {
@@ -67,25 +67,37 @@ int findMaxFlow (int source, int sink, int size)
             MAXF += flowCost;
         }
     }
-    return MAXF == INF ? 0 : MAXF;
+    return MAXF;
 }
 //-----------------------------------------------------//
 
 int main ()
 {
-    int i, j, N, flow, from, to, testN;
+    int testN, N, i, j, 
+        s, t, c, 
+        from, to, flow;
     
     testN = 0;
-    cin >> N;
-    for (i = 0; i < N; i++)
-        for (j = 0; j < N; j++)
-            Graph[i][j] = 0;
-
-    while (cin >> from >> to >> flow)
+    while (cin >> N && N != 0)
     {
-        Graph[from-1][to-1] = Graph[from-1][to-1] += flow;
+        for (i = 0; i < N; i++)
+            for (j = 0; j < N; j++)
+                Graph[i][j] = 0;
+
+        cin >> s >> t >> c;
+        s--;
+        t--;
+        while (c)
+        {
+            cin >> from >> to >> flow;
+            from--;
+            to--;
+            Graph[from][to] = Graph[to][from] += flow;
+            c--;
+        }
+        flow = findMaxFlow (s, t, N);
+        cout << "Network " << ++testN << "\n";
+        cout << "The bandwidth is " << flow << ".\n\n";
     }
-    flow = findMaxFlow (0, N-1, N);
-    cout << "Network " << ++testN << "\n";
-    cout << "The bandwidth is " << flow << "\n\n";
+    return 0;
 }
