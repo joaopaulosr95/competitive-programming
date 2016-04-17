@@ -6,10 +6,10 @@
 #include <iterator>
 #include <cstring>
 
-char palavra[61];
 
 int main() {
-
+    
+    char palavra[61];
     unsigned long long int result;
 
 	int num = 0;
