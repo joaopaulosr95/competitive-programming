@@ -3,7 +3,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <cstring>
+#include <cctype>
 
 using namespace std;
 
@@ -17,7 +17,7 @@ vector<int> fibonacci {1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
 
 int main ()
 {
-    int T, N, code, pos;
+    int T, N, code, pos, max;
     string cipher;
     map<int,int> fibmap;
 
@@ -25,32 +25,35 @@ int main ()
     while(T--)
     {
         cin >> N;
+        max = 0;
         for (int i = 0; i < N; i++)
         {
             cin >> code;
-            vector<int>::iterator it = find(fibonacci.begin(), fibonacci.end(), code);
-            if (it != fibonacci.end())
-                fibmap.insert(make_pair(code, distance(fibonacci.begin(), it)));
-            else
-                fibmap.insert(make_pair(code, 32));
+            vector<int>::iterator it = find(fibonacci.begin(), 
+                    fibonacci.end(), code);
+            pos = distance(fibonacci.begin(), it);
+            fibmap.insert(make_pair(code, pos));
+            //cout << "Code: " << code << " Pos: " << pos << endl;
+            if (max < code)
+                max = code;
         }
 
-        for (map<int,int>::iterator it = fibmap.begin(); it != fibmap.end(); it++)
-            cout << it->first << "\t" << it->second << "\t" << cipher[it->second] << "\n";
         cin.ignore(1);
         getline(cin, cipher);
+        //cout << cipher << "\n";
 
-        for (int i = 0; i < cipher.length(); i++)
+        for (vector<int>::iterator it = fibonacci.begin(); 
+                it != fibonacci.end() && *it <= max; it++)
         {
-            map<int,int>::iterator it = fibmap.find(cipher[i]);
-            if (it != fibmap.end())
-                cout << cipher[it->second] << ".";
+            map<int,int>::iterator mit = fibmap.find(*it);
+            if (mit != fibmap.end() && isupper(cipher[mit->second]))
+                cout << cipher[mit->second];
             else
-                cout << " .";
+                cout << ' ';
         }
         cout << "\n";
         fibmap.clear();
-//cipher.clear();
+        cipher.clear();
     }
     return 0;
 }
