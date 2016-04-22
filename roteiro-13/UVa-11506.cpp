@@ -38,67 +38,65 @@ int impResult(int minCost){
 	else cout << "ERRO" ;
 	}
 
-int main(void)
+int main()
 {
-    int M,W;
+    int M,W,idComp, costPC, dRemet, pDestin, costWire;
     while(true){
-		cin >> M >> W;
-		confereNeW(M,W);
-		if (M+W == 0 && (aux!=1) )
-           break;
+	cin >> M >> W;
+	confereNeW(M,W);
+    if (M+W == 0 && (aux!=1) )
+        break;
         mach = M-1;
         cenSer = M;
-        for (int i = 0; i < 2*M; i++)
-            for (int j = 0 ;j < 2*M; j++)
-                res[i][j] = -1;
+    for (int i = 0; i < 2*M; i++)
+        for (int j = 0 ;j < 2*M; j++)
+       	res[i][j] = -1;
 
 
-        for (int i = 1; i < M-1; i++){
-            int idComp, costPC;
-			cin >> idComp >> costPC;
-            idComp--;
-            res[idComp][idComp+M] = res[idComp+M][idComp] = costPC;
-        }
+    for (int i = 1; i < M-1; i++){
+	cin >> idComp >> costPC;
+        idComp--;
+        res[idComp][idComp+M] = res[idComp+M][idComp] = costPC;
+		  }
 
         for (int i = 0; i < W; i++){
-            int dRemet, pDestin, costWire;
-            cin >> dRemet >> pDestin >> costWire;
-            dRemet--;
-            pDestin--;
-            res[dRemet+M][pDestin] = res[pDestin+M][dRemet] = costWire;
+        cin >> dRemet >> pDestin >> costWire;
+        dRemet--;
+        pDestin--;
+        res[dRemet+M][pDestin] = res[pDestin+M][dRemet] = costWire;
 
         }
 
 
-        int minCost = 0;
-        while(true){
-            auxCos = 0;
-            vector<int> dist;
-            dist.assign(300, DEF);
-            dist[cenSer] = 0;
-            queue<int> fila;
-            fila.push(cenSer);
-            vec.assign(300, -1);
-            while (!fila.empty()){
-                  int u = fila.front(); fila.pop();
-                  if (u == mach){
-                     break;
+    int minCost = 0;
+    while(true){
+	auxCos = 0;
+	vector<int> dist;
+	dist.assign(300, DEF);
+	dist[cenSer] = 0;
+	queue<int> fila;
+	fila.push(cenSer);
+        vec.assign(300, -1);
+    while (!fila.empty()){
+	int u = fila.front(); fila.pop();
+    if (u == mach){
+	break;
 					 }
-                 for (int v = 0; v < 2*M; v++){
-                     if (res[u][v] > 0 && dist[v] == DEF){
-                         dist[v] = dist[u] + 1;
-                         fila.push(v);
-                         vec[v] = u;
-                     }
-                 }
-            }
-            ff_flow(mach,DEF);
-            if (auxCos == 0)
-               break;
-            minCost = minCost+ auxCos;
+    for (int v = 0; v < 2*M; v++){
+    if (res[u][v] > 0 && dist[v] == DEF){
+	dist[v] = dist[u] + 1;
+	fila.push(v);
+	vec[v] = u;
+	}
+    }
+	}
+	ff_flow(mach,DEF);
+    if (auxCos == 0)
+	break;
+	minCost = minCost+ auxCos;
         }
 
-		impResult(minCost);
+	impResult(minCost);
 
     }
     return 0;
