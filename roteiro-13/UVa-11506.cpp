@@ -26,44 +26,44 @@ void ff_flow(int v, int minimo){
 }
 
 
-int confereNeW(int M, int W){
-	if (M>0 && M<100 && W>-10 && W<2000) aux=1;
+int confReq(int N, int W){
+	if (N>0 && N<100 && W>-10 && W<2000) aux=1;
 	else aux=0;
 }
 
 int impResult(int minCost){
     int N,W;
-    confereNeW(N,W);
+    confReq(N,W);
 	if (aux!=1) cout << minCost << endl;
 	else cout << "ERRO" ;
 	}
 
 int main()
 {
-    int M,W,idComp, costPC, dRemet, pDestin, costWire;
+    int N,W,idComp, costPC, dRemet, pDestin, costWire;
     while(true){
-	cin >> M >> W;
-	confereNeW(M,W);
-    if (M+W == 0 && (aux!=1) )
+	cin >> N >> W;
+	confReq(N,W);
+    if (N+W == 0 && (aux!=1) )
         break;
-        mach = M-1;
-        cenSer = M;
-    for (int i = 0; i < 2*M; i++)
-        for (int j = 0 ;j < 2*M; j++)
+        mach = N-1;
+        cenSer = N;
+    for (int i = 0; i < 2*N; i++)
+        for (int j = 0 ;j < 2*N; j++)
        	res[i][j] = -1;
 
 
-    for (int i = 1; i < M-1; i++){
+    for (int i = 1; i < N-1; i++){
 	cin >> idComp >> costPC;
         idComp--;
-        res[idComp][idComp+M] = res[idComp+M][idComp] = costPC;
+        res[idComp][idComp+N] = res[idComp+N][idComp] = costPC;
 		  }
 
         for (int i = 0; i < W; i++){
         cin >> dRemet >> pDestin >> costWire;
         dRemet--;
         pDestin--;
-        res[dRemet+M][pDestin] = res[pDestin+M][dRemet] = costWire;
+        res[dRemet+N][pDestin] = res[pDestin+N][dRemet] = costWire;
 
         }
 
@@ -82,7 +82,7 @@ int main()
     if (u == mach){
 	break;
 					 }
-    for (int v = 0; v < 2*M; v++){
+    for (int v = 0; v < 2*N; v++){
     if (res[u][v] > 0 && dist[v] == DEF){
 	dist[v] = dist[u] + 1;
 	fila.push(v);
