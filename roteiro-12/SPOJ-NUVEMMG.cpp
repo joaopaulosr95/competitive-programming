@@ -42,9 +42,11 @@ int main()
             {
                 mincost = INF;
                 for (int z = 1; j-z >= 0; z++)
-                        mincost = min(mincost,
+                {
+                    mincost = min(mincost,
                             budget[j-z][i-1] + z * servers[j].second);
                     //cout << "mincost: " << mincost << "\n";
+                }
                 budget[j][i] = mincost;
             }
         }
