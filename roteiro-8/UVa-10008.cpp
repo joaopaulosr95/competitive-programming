@@ -15,22 +15,19 @@ bool compare(pair<char,int> a, pair<char, int> b)
 int main()
 {
     int N;
-    string input;
+    char ch;
     pair<char,int> alphabet[26];
 
     for (int i = 0; i < 26; i++)
         alphabet[i] = make_pair('A' + i, 0);
         
     cin >> N;
-    while (N--)
+    for (int i = 0; i < N; i++)
     {
-        getline(cin, input);
-        for (int i = 0; i < input.length(); i++)
+        while (cin >> ch && ch != '\n')
         {
-            if (toupper(input[i]) >= 'A' && toupper(input[i]) <= 'Z')
-                alphabet[toupper(input[i]) - 'A'].second += 1;
-            //else if (idx >= 97 && idx <= 122)
-            //    alphabet[idx - 97].second += 1;
+            if (toupper(ch) >= 'A' && toupper(ch) <= 'Z')
+                alphabet[toupper(ch) - 'A'].second += 1;
         }
         sort(alphabet, alphabet + 26, compare);
     }
