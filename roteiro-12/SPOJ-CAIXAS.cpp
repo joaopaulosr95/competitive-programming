@@ -11,10 +11,15 @@ int main(){
     int N,P;
     int matriz[1000][1000];
     int guardaLinha,guardaColuna,tam;
-    while(cin >> N >> P && N!=0 && P!=0){
     int cnt=0;
     int cntauxEsquerda=0,cntauxDireita=0;
+    while(1){
+
+    //int cnt=0;
+    //int cntauxEsquerda=0,cntauxDireita=0;
   // matriz= new int *[P];
+    cin >> N >> P;
+    if(!N && !P)break;
 
     for(int i=0;i<1000;i++){
 
@@ -102,7 +107,6 @@ int main(){
   //  } 
 
     
-
 
     }
 
