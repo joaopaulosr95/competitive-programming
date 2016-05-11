@@ -1,47 +1,54 @@
-#include <iostream>     // std::cout
-#include <algorithm>    // std::sort
-#include <vector>       // std::vector
+#include <iostream> // std::cout
+#include <algorithm> // std::sort
+#include <vector> // std::vector
 #include <string>
 #include <iterator>
 #include <string.h>
+#include <cstdio>
 
 using namespace std;
 
-int main(){
+void verificaPadrao(std::string padrao,std::string texto,int j){
+		int tamP = padrao.length();
+		std::string auxPadrao = padrao;
+		int cnt=0;
+	//	cout << " ENTREI NA FUNCAO " << endl;
+		for(int z=j;z<j+tamP;z++){
+		//	cout << "ENTREI NO FOR " << endl;
+			if(texto.at(z)==auxPadrao.at(0)) {
+				cnt=cnt+1;
+			//	cout << "++ no cnt" << cnt << endl;
+				auxPadrao.erase(0,1);
+			//	cout << "FIZ ERASE " << endl;
+			}
 
-	int tam;
-	std::string padrao,texto;
-	
-	while(cin >> tam){
-	cin >> padrao;
-	cin >> texto;
-	int tamP = padrao.size();
-	int tamT = texto.size();
-	char arrayPadrao[tamP];
-	char arrayTexto[tamT];
-
-	strcpy(arrayPadrao, padrao.c_str());
-	strcpy(arrayTexto, texto.c_str());
-
-	int cnt=0;
-
-		for(int j=0;j<tamT;j++){
-			if(arrayTexto[j]==arrayPadrao[0]){
-				int aux0=0;
-				int k=j;
-					while(arrayTexto[k]==arrayPadrao[aux0] && aux0<tamP){				
-						k++;
-						aux0++;
-					}
-
-				if(aux0==tamP) {
-					cnt++;
-					cout << j << endl;
-				}
-			} 
 		}
-		if(cnt==0) cout << endl;
-	}
-	
+	//	cout << cnt << " " << tamP << endl;
+		if(cnt==tamP) cout << j << endl;
+
+
+}
+
+
+int main(){
+		int tamP;
+while((scanf("%d", &tamP))!=EOF){
+    std::string padrao;
+    cin >> padrao;
+    std::string texto;
+    cin >> texto;
+		int tamT = texto.length();
+		int diff = tamT-tamP+1;
+		int aux=0;
+		for(int i=0;i<diff;i++) {
+				if(texto.at(i)==padrao.at(0)){
+					aux++;
+					verificaPadrao(padrao,texto,i);
+				}
+		}
+			if(aux==0) cout << endl;
+}
+
+
 	return 0;
 }
