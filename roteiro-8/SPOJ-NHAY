@@ -48,7 +48,7 @@ while((scanf("%d", &tamP))!=EOF){
 			i++;
 		}
 		else {
-			it=maping.find (padrao[aux]);
+			it=maping.find(padrao[aux]);
 		if (it==maping.end()){
 			i=i+padrao.length();
 		}
