@@ -3,51 +3,67 @@
 #include <vector> // std::vector
 #include <string>
 #include <iterator>
+#include <map>
 #include <string.h>
 #include <cstdio>
 
 using namespace std;
 
-void verificaPadrao(std::string padrao,std::string texto,int j){
-		int tamP = padrao.length();
-		std::string auxPadrao = padrao;
-		int cnt=0;
-	//	cout << " ENTREI NA FUNCAO " << endl;
-		for(int z=j;z<j+tamP;z++){
-		//	cout << "ENTREI NO FOR " << endl;
-			if(texto.at(z)==auxPadrao.at(0)) {
-				cnt=cnt+1;
-			//	cout << "++ no cnt" << cnt << endl;
-				auxPadrao.erase(0,1);
-			//	cout << "FIZ ERASE " << endl;
-			}
 
-		}
-	//	cout << cnt << " " << tamP << endl;
-		if(cnt==tamP) cout << j << endl;
-
-
-}
-
+int tamP,aux=0,confere=0;
+std::string padrao,texto;
+int z=0;
 
 int main(){
-		int tamP;
+
 while((scanf("%d", &tamP))!=EOF){
-    std::string padrao;
+	map<char,int> maping;
     cin >> padrao;
-    std::string texto;
     cin >> texto;
-		int tamT = texto.length();
-		int diff = tamT-tamP+1;
-		int aux=0;
-		for(int i=0;i<diff;i++) {
-				if(texto.at(i)==padrao.at(0)){
-					aux++;
-					verificaPadrao(padrao,texto,i);
-				}
+
+	for (unsigned int u=0;u<padrao.length();u++){
+		maping[padrao[u]]=padrao.length()-1-u;
+	}
+
+	maping[padrao[padrao.length()-1]]=1;
+	unsigned int i=0;
+
+	while (i<texto.length()){
+		aux=padrao.length();
+		aux--;
+
+		while (aux>=z){
+			if (texto[i+aux] == padrao[aux]){
+					aux--;
+			}
+			else break;
+
 		}
-			if(aux==0) cout << endl;
+		
+		map<char,int>::iterator it;
+
+		if (aux<z){
+			cout << i << endl;
+			confere=1;
+			i++;
+		}
+		else {
+			it=maping.find (padrao[aux]);
+		if (it==maping.end()){
+			i=i+padrao.length();
+		}
+		else {
+			i=i+it->second;
+		}
+
+	}
+			
 }
+
+	if(confere==z){
+			cout << endl;
+		}
+	}
 
 
 	return 0;
