@@ -61,9 +61,9 @@ while((scanf("%d", &tamP))!=EOF){
 }
 
 	if(confere==z){
-			cout << endl;
-		}
+		cout << endl;
 	}
+}
 
 
 	return 0;
