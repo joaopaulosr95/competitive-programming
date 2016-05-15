@@ -1,22 +1,25 @@
-#include <iostream>     
+#include <iostream>     // std::cout
+#include <vector>       // std::vector
+#include <string>
 #include <string.h>
+#include <cstdio>
+#include <math.h>
 
 using namespace std;
 
+int tam;
+long long total=0;
+std::string str;
+
 int main(){
+    cin >> str;
+    tam = str.length()+10000;
+    std::vector<long> cnt(tam);
 
-	string palavra;
-	int cnt=0;
-		cin >> palavra;
-		int tam = palavra.size();
-		char array[tam];
-		strcpy(array, palavra.c_str());
-		
-		for(int i=0;i<tam;i++){
-			for(int j=0;j<tam;j++){
-				if(array[i]==array[j]) cnt++;
-			}
-		}
-	cout << cnt << endl;
+    for(unsigned int i=0;i<str.length();i++) cnt[str[i]]++;
+    for(int i=0;i<tam;i++) total=total+(pow(cnt[i],2));
 
+    cout << total << endl;
+
+    return 0;
 }
